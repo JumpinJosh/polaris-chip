@@ -28,52 +28,52 @@ export class MyCard extends LitElement {
       }
 
       .card1 {
-  border: 2px solid;
-  border-radius: 4px;
-  border-style: dashed;
-  background-color: turquoise;
-  padding: 8px;
-  width: 400px;
-  margin: 16px;
-  height: auto;
-}
+      border: 2px solid;
+      border-radius: 4px;
+      border-style: dashed;
+      background-color: turquoise;
+      padding: 8px;
+      width: 400px;
+      margin: 16px;
+      height: auto;
+    }
 
-.heading3 {
-  font-family: "Lucida Console", "Courier New",   monospace;
-  text-align: center;
-}
+    .heading3 {
+      font-family: "Lucida Console", "Courier New",   monospace;
+      text-align: center;
+    }
 
-.img1 {
-  border-radius: 8px;
-  padding: 8px;
-  margin-left: 93px;
-  margin-right: 100px;
-  width: 200px;
-  height: auto;
-}
+    .img1 {
+      border-radius: 8px;
+      padding: 8px;
+      margin-left: 93px;
+      margin-right: 100px;
+      width: 200px;
+      height: auto;
+    }
 
-.paragraph1 {
-  font-family: "Lucida Console", "Courier New",   monospace;
-  text-align: center;
-}
+    .paragraph1 {
+      font-family: "Lucida Console", "Courier New",   monospace;
+      text-align: center;
+    }
 
-a {
-  text-decoration: none;
-}
+    a {
+      text-decoration: none;
+    }
 
-.btn {
-  background-color: blue;
-  color: white;
-  font-size: 20px;
-  border-radius: 10%;
-  padding: 16px 16px 16px 16px;
-  margin: 4px 150px 4px 150px;
-}
+    .btn {
+      background-color: blue;
+      color: white;
+      font-size: 20px;
+      border-radius: 10%;
+      padding: 16px 16px 16px 16px;
+      margin: 4px 150px 4px 150px;
+    }
 
-.btn:focus,
-.btn:hover {
-  background-color: green;  
-}
+    .btn:focus,
+    .btn:hover {
+      background-color: green;  
+    }
     `;
   }
 
