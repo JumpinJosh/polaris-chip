@@ -14,11 +14,10 @@ export class MyCard extends LitElement {
   constructor() {
     super();
     this.title = "Indigo Bunting";
-    this.imglink = "https://wonderfulengineering.com/wp-content/uploads/2014/10/image-wallpaper-15.jpg"
-    this.paragraphtext = "This is a Indigo Bunting. A species of bird that is native to the southern region of canada and most of the United State. They are seed-eating birds that belongs to the cardinal family."
-    this.btnlink = "https://hax.psu.edu"
+    this.imglink = "https://wonderfulengineering.com/wp-content/uploads/2014/10/image-wallpaper-15.jpg";
+    this.paragraphtext = "This is a Indigo Bunting. A species of bird that is native to the southern region of canada and most of the United State. They are seed-eating birds that belongs to the cardinal family.";
+    this.btnlink = "https://hax.psu.edu";
     this.btntext = "details";
-
   }
 
   static get styles() {
@@ -80,12 +79,12 @@ export class MyCard extends LitElement {
   render() {
     return html`
     <div class="card1">
-      <h3 class="heading3">Indigo Bunting</h3>
-      <p class="paragraph1">This is a Indigo Bunting. A species of bird that is native to the southern region of canada and most of the United State. They are seed-eating birds that belongs to the cardinal family.</p>
-      <img class="img1" src="https://wonderfulengineering.com/wp-content/uploads/2014/10/image-wallpaper-15.jpg">
+      <h3 class="heading3">${this.title}</h3>
+      <p class="paragraph1">${this.paragraphtext}</p>
+      <img class="img1" src=${this.imglink}>
       <div class="btn-wrapper">
-        <a href="https://hax.psu.edu">
-          <button class="btn">details</button>
+        <a href=${this.btnlink}>
+          <button class="btn">${this.btntext}</button>
         </a>
       </div>
     </div>
