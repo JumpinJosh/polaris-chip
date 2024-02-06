@@ -26,6 +26,10 @@ export class MyCard extends LitElement {
         display: block;
       }
 
+      .card1.change-color {
+      background-color: #0EA625;
+    }
+
       .card1 {
       border: 2px solid;
       border-radius: 4px;
@@ -94,7 +98,7 @@ export class MyCard extends LitElement {
   static get properties() {
     return {
       title: { type: String },
-      imglink: { type: String },
+      imglink: { type: String, Reflect: "True" },
       paragraphtext: { type: String },
       btnlink: { type: String },
       btntext: { type: String },

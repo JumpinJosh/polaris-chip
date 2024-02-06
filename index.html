@@ -16,6 +16,7 @@
       font-family: sans-serif;
       background-color: #ededed;
     }
+
     polaris-chip {
       margin: 16px;
     }
@@ -32,22 +33,69 @@
   <polaris-chip title="Grants and donations"></polaris-chip>
 
   <!-- this is going to take the tag and change the title -->
-  
+
 
   <h1>my-card</h1>
+  <div class="control-wrapper">
+    <button class="duplicate">Clone Card</button>
+    <button id="changetitle">Change title</button>
+    <button id="changeimage">Change image</button>
+    <button id="changebg">Change background</button>
+    <button id="delete">Delete card</button>
+  </div>
   <my-card></my-card>
-  <my-card title="Bald Eagle" imglink="https://th.bing.com/th/id/R.4fdf656fd28853c68dbbf2765e59b7a5?rik=S%2f5%2fV4IH09HsZw&pid=ImgRaw&r=0" 
-  paragraphtext="This is a Bald Eagle. They are the bird of the U.S."></my-card>
+  <my-card title="Bald Eagle"
+    imglink="https://th.bing.com/th/id/R.4fdf656fd28853c68dbbf2765e59b7a5?rik=S%2f5%2fV4IH09HsZw&pid=ImgRaw&r=0"
+    paragraphtext="This is a Bald Eagle. They are the bird of the U.S."></my-card>
   <my-card title="flamingo" imglink="https://i.pinimg.com/originals/b3/4e/d3/b34ed334b7da6a89475d5d68348f2fd1.jpg"
-  paragraphtext="This is a flamingo. They are native to North and South America, Europe, Asia, and Africa. They're bright pink color makes them stand out from the rest."></my-card>
+    paragraphtext="This is a flamingo. They are native to North and South America, Europe, Asia, and Africa. They're bright pink color makes them stand out from the rest."></my-card>
   <my-card title="Black Canary" imglink="https://www.canaryadvisor.com/images/black-canary-21843654.jpg"
-  paragraphtext="This is a black canary. They are native to Macaronesian Islands. They come in black, red, and yellow varieties."></my-card>
-  <my-card title="Blue Jay" imglink="https://th.bing.com/th/id/OIP.vLYeOrgoZpm4ja1XNAB4YgAAAA?w=400&h=400&rs=1&pid=ImgDetMain" 
-  paragraphtext="This is a blue jay. They are native to eastern North America from southern canada to northeastern Texas."></my-card>
+    paragraphtext="This is a black canary. They are native to Macaronesian Islands. They come in black, red, and yellow varieties."></my-card>
+  <my-card title="Blue Jay"
+    imglink="https://th.bing.com/th/id/OIP.vLYeOrgoZpm4ja1XNAB4YgAAAA?w=400&h=400&rs=1&pid=ImgDetMain"
+    paragraphtext="This is a blue jay. They are native to eastern North America from southern canada to northeastern Texas."></my-card>
 
   <!-- this is what is bringing in the definition for this tag -->
   <script type="module" src="./src/polaris-chip.js"></script>
   <script type="module" src="./src/my-card.js"></script>
+
+  <script>
+    //Clones a new card to the right of the previous.
+    //If there are more than 10 cards, then it won't add a new card when clone button is clicked.
+    document.querySelector('.duplicate').addEventListener('click', function (event) {
+      if (document.querySelectorAll('.card1').length < 10) {
+        const newCard = document.querySelector('#cardlist .card1').cloneNode(true);
+        document.querySelector('#cardlist').appendChild(newCard);
+      }
+    });
+
+    //Changes the title of the card
+    document.querySelector('#changetitle').addEventListener('click', function (e) {
+      document.querySelector('.heading3').innerHTML = "<p>What's wrong with Indigo Bunting?</p>";
+    });
+
+    //Changes the image on the card.
+    document.querySelector('#changeimage').addEventListener('click', function (e) {
+      document.querySelector('.img1').src = "https://github.com/elmsln.png";
+    });
+
+    //changes background color of the card.
+    //changes back to original if button is pressed again.
+    document.querySelector('#changebg').addEventListener('click', function (e) {
+      document.querySelectorAll('.card1').forEach(function (changedcard) {
+        changedcard.classList.toggle('change-color');
+      });
+    });
+
+    //deletes card from the page.
+    //if there is one card left, pressing the button won't delete it.
+    document.querySelector('#delete').addEventListener('click', function (e) {
+      console.log(document.querySelectorAll('.card1').length);
+      if (document.querySelectorAll('.card1').length !== 1) {
+        document.querySelector('.card1').remove();
+      }
+    });
+  </script>
 </body>
 
 </html>
