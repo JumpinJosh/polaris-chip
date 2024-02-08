@@ -24,43 +24,44 @@ export class MyCard extends LitElement {
   static get styles() {
     return css`
       :host {
-        display: block;
+        display: inline-flex;
       }
 
       :host([fancy]) {
-        display: block;
+        display: inline-flex;
         background-color: pink;
         border: 2px solid fuchsia;
         box-shadow: 10px 5px 5px red;
       }
 
       .card1.change-color {
-      background-color: #0EA625;
+        background-color: #0EA625;
       }
 
       .card1 {
-      border: 2px solid;
-      border-radius: 4px;
-      border-style: dashed;
-      background-color: turquoise;
-      padding: 8px;
-      width: 400px;
-      margin: 16px;
-      height: auto;
+        border: 2px solid;
+        border-radius: 4px;
+        border-style: dashed;
+        background-color: turquoise;
+        padding: 8px;
+        width: 400px;
+        margin: 16px;
+        height: auto;
       }
 
-    .heading3 {
-      font-family: "Lucida Console", "Courier New",   monospace;
-      text-align: center;
+      .heading3 {
+        font-family: "Lucida Console", "Courier New",   monospace;
+        text-align: center;
       }
 
-    .img1 {
-      border-radius: 8px;
-      padding: 8px;
-      margin-left: 93px;
-      margin-right: 100px;
-      width: 200px;
-      height: auto;
+      .img1 {
+        border-radius: 8px;
+        padding: 8px;
+        margin-left: 93px;
+        margin-right: 100px;
+        width: 200px;
+        height: auto;
+        aspect-ratio: auto;
       }
 
     .paragraph1 {
@@ -85,19 +86,47 @@ export class MyCard extends LitElement {
     .btn:hover {
       background-color: green;  
     }
+
+    details summary {
+      text-align: left;
+      font-size: 20px;
+      padding: 8px 0;
+    }
+
+    details[open] summary {
+      font-weight: bold;
+    }
+  
+    details div {
+      border: 2px solid black;
+      text-align: left;
+      padding: 8px;
+      height: 70px;
+      overflow: auto;
+    }
     `;
+  }
+
+  openChanged(e) {
+    console.log(e.newState);
+    if (e.newState === "open") {
+      this.fancy = true;
+    }
+    else {
+      this.fancy = false;
+    }
   }
 
   render() {
     return html`
     <div class="card1">
       <h3 class="heading3">${this.title}</h3>
-      <details ?open="${this.fancy}">
+      <details ?open="${this.fancy}" @toggle="${this.openChanged}">
         <summary>Description</summary>
-          <div>
-            <slot>${this.paragraphtext}</slot>
-          </div>
-        </details>
+        <div>
+          <slot>${this.paragraphtext}</slot>
+        </div>
+      </details>
       <img class="img1" src=${this.imglink}>
       <div class="btn-wrapper">
         <a href=${this.btnlink}>

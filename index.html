@@ -44,7 +44,7 @@
     <button id="delete">Delete card</button>
   </div>
   <div id="cardlist">
-    <my-card fancy></my-card>
+    <my-card></my-card>
     <my-card title="Bald Eagle"
     imglink="https://th.bing.com/th/id/R.4fdf656fd28853c68dbbf2765e59b7a5?rik=S%2f5%2fV4IH09HsZw&pid=ImgRaw&r=0"
     paragraphtext="This is a Bald Eagle. They are the bird of the U.S."></my-card>
@@ -88,10 +88,10 @@
     //changes background color of the card.
     //changes back to original if button is pressed again.
     document.querySelector('#changebg').addEventListener('click', function (e) {
-      const mycard = document.querySelector('my-card');
+      const mycard = document.querySelectorAll('my-card');
 
-      mycard.forEach(mycards => {
-        card.classList.toggle('change-color');
+      mycard.forEach(card => {
+        card.shadowRoot.querySelector('.card1').classList.toggle('change-color');
       });
     });
 
