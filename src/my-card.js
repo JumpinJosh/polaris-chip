@@ -18,6 +18,7 @@ export class MyCard extends LitElement {
     this.paragraphtext = "This is a Indigo Bunting. A species of bird that is native to the southern region of canada and most of the United State. They are seed-eating birds that belongs to the cardinal family.";
     this.btnlink = "https://hax.psu.edu";
     this.btntext = "details";
+    this.fancy = false;
   }
 
   static get styles() {
@@ -26,9 +27,16 @@ export class MyCard extends LitElement {
         display: block;
       }
 
+      :host([fancy]) {
+        display: block;
+        background-color: pink;
+        border: 2px solid fuchsia;
+        box-shadow: 10px 5px 5px red;
+      }
+
       .card1.change-color {
       background-color: #0EA625;
-    }
+      }
 
       .card1 {
       border: 2px solid;
@@ -39,12 +47,12 @@ export class MyCard extends LitElement {
       width: 400px;
       margin: 16px;
       height: auto;
-    }
+      }
 
     .heading3 {
       font-family: "Lucida Console", "Courier New",   monospace;
       text-align: center;
-    }
+      }
 
     .img1 {
       border-radius: 8px;
@@ -53,7 +61,7 @@ export class MyCard extends LitElement {
       margin-right: 100px;
       width: 200px;
       height: auto;
-    }
+      }
 
     .paragraph1 {
       font-family: "Lucida Console", "Courier New",   monospace;
@@ -84,7 +92,12 @@ export class MyCard extends LitElement {
     return html`
     <div class="card1">
       <h3 class="heading3">${this.title}</h3>
-      <p class="paragraph1">${this.paragraphtext}</p>
+      <details ?open="${this.fancy}">
+        <summary>Description</summary>
+          <div>
+            <slot>${this.paragraphtext}</slot>
+          </div>
+        </details>
       <img class="img1" src=${this.imglink}>
       <div class="btn-wrapper">
         <a href=${this.btnlink}>
@@ -102,6 +115,7 @@ export class MyCard extends LitElement {
       paragraphtext: { type: String },
       btnlink: { type: String },
       btntext: { type: String },
+      fancy: { type: Boolean, reflect: true },
     };
   }
 }
