@@ -97,8 +97,8 @@ export class MyCard extends LitElement {
 
   static get properties() {
     return {
-      title: { type: String },
-      imglink: { type: String, Reflect: "True" },
+      title: { type: String, reflect: true },
+      imglink: { type: String, reflect: true },
       paragraphtext: { type: String },
       btnlink: { type: String },
       btntext: { type: String },
