@@ -56,10 +56,10 @@ export class MyCard extends LitElement {
 
       .img1 {
         border-radius: 8px;
-        padding: 8px;
-        margin-left: 93px;
-        margin-right: 100px;
-        width: 200px;
+        padding: 25%;
+        margin-left: 1%;
+        margin-right: 100%;
+        width: 50%;
         height: auto;
         aspect-ratio: auto;
       }
