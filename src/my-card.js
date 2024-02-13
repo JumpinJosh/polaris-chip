@@ -39,13 +39,13 @@ export class MyCard extends LitElement {
       }
 
       .card1 {
-        border: 2px solid;
-        border-radius: 4px;
+        border: 3px solid;
+        border-radius: 6px;
         border-style: dashed;
         background-color: turquoise;
-        padding: 8px;
+        padding: 16px;
         width: 400px;
-        margin: 16px;
+        margin: 32px 16px;
         height: auto;
       }
 
