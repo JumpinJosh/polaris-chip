@@ -128,7 +128,7 @@ export class MyCard extends LitElement {
           <slot>${this.paragraphtext}</slot>
         </div>
       </details>
-      <img class="img1" src=${this.imglink}>
+      <meme-maker></meme-maker>
       <div class="btn-wrapper">
         <a href=${this.btnlink}>
           <button class="btn">${this.btntext}</button>
