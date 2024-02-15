@@ -39,6 +39,10 @@ export class CounterApp extends LitElement {
             text-align: center;
           }
 
+          .btn-wrapper {
+            display: flex;
+          }
+
           .btn1 {
             background-color: purple;
             color: white;
@@ -66,10 +70,8 @@ export class CounterApp extends LitElement {
         <div class="counter-wrapper">
             <h1 class="title">Counter App</h1>
             <h2 class="counter">${this.counter}</h2>
-            <div class="btn-wrapper1">
+            <div class="btn-wrapper">
                 <button class="btn1">${this.btnText1}</button>
-            </div>
-            <div class="btn-wrapper2">
                 <button class="btn2">${this.btnText2}</button>
             </div>
         </div>
