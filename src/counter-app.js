@@ -20,12 +20,27 @@ export class CounterApp extends LitElement {
     }
 
     render() {
-        return html``
+        return html`
+        <div class="counter-wrapper">
+            <h1>Counter App</h1>
+            <h2>${this.counter}</h2>
+            <div>
+                <button>${this.btnText1}</button>
+            </div>
+            <div>
+                <button>${this.btnText2}</button>
+            </div>
+        </div>
+        `
     }
 
     static get properties() {
         return {
-
+            counter: { type: String },
+            min: { type: String },
+            max: { type: String },
+            btnText1: { type: String },
+            btnText2: { type: String },
         }
     }
 }
