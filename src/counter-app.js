@@ -84,3 +84,5 @@ export class CounterApp extends LitElement {
         }
     }
 }
+
+globalThis.customElements.define(CounterApp.tag, CounterApp);
