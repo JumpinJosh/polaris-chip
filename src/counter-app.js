@@ -45,7 +45,7 @@ export class CounterApp extends LitElement {
             font-size: 20px;
             border-radius: 10%;
             padding: 16px 16px 16px 16px;
-            margin: 4px 150px 4px 150px;
+            margin: 4px 4px;
             float: left;
           }
         `
