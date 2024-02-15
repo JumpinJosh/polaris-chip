@@ -8,11 +8,11 @@ export class CounterApp extends LitElement {
 
     constructor() {
         super();
-        this.counter = "5"
-        this.min = "1"
-        this.max = "10"
-        this.btnText1 = "+"
-        this.btnText2 = "-"
+        this.counter = 5;
+        this.min = 1;
+        this.max = 10;
+        this.btnText1 = "+";
+        this.btnText2 = "-";
     }
 
     static get styles() {
@@ -24,7 +24,7 @@ export class CounterApp extends LitElement {
           .counter-wrapper {
             border: 3px solid;
             border-radius: 6px;
-            background-color: cyan;
+            background-color: gold;
             padding: 16px;
             margin: 32px 16px;
           }
@@ -45,10 +45,36 @@ export class CounterApp extends LitElement {
             font-size: 20px;
             border-radius: 10%;
             padding: 16px 16px 16px 16px;
-            margin: 4px 4px;
+            margin: 20px 40px 20px 40px;
             float: left;
+            width: 50px;
+          }
+
+          .btn-group button:focus,
+          .btn-group button:hover {
+            background-color: blue;
+          }
+
+          :host([counter="18"]) .counter {
+            color: blue;
+          }
+
+          :host([counter="21"]) .counter {
+            color: green;
           }
         `
+    }
+
+    increase(){
+        if (this.counter < this.max) {
+            this.counter++;
+        }
+    }
+
+    decrease() {
+        if (this.counter > this.min) {
+            this.counter--;
+        }
     }
 
     render() {
@@ -57,8 +83,8 @@ export class CounterApp extends LitElement {
             <h1 class="title">Counter App</h1>
             <h2 class="counter">${this.counter}</h2>
             <div class="btn-group">
-                <button>${this.btnText1}</button>
-                <button>${this.btnText2}</button>
+                <button class="btn1" @click="${this.increase}">${this.btnText1}</button>
+                <button class="btn2" @click="${this.decrease}">${this.btnText2}</button>
             </div>
         </div>
         `
@@ -66,9 +92,9 @@ export class CounterApp extends LitElement {
 
     static get properties() {
         return {
-            counter: { type: String },
-            min: { type: String },
-            max: { type: String },
+            counter: { type: Number, reflect: true },
+            min: { type: Number },
+            max: { type: Number },
             btnText1: { type: String },
             btnText2: { type: String },
         }
