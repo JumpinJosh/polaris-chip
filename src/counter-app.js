@@ -39,28 +39,14 @@ export class CounterApp extends LitElement {
             text-align: center;
           }
 
-          .btn-wrapper {
-            display: flex;
-          }
-
-          .btn1 {
+          .btn-group button {
             background-color: purple;
             color: white;
             font-size: 20px;
             border-radius: 10%;
             padding: 16px 16px 16px 16px;
             margin: 4px 150px 4px 150px;
-            display: inline;
-          }
-
-          .btn2 {
-            background-color: purple;
-            color: white;
-            font-size: 20px;
-            border-radius: 10%;
-            padding: 16px 16px 16px 16px;
-            margin: 4px 150px 4px 150px;
-            display: inline;
+            float: left;
           }
         `
     }
@@ -70,9 +56,9 @@ export class CounterApp extends LitElement {
         <div class="counter-wrapper">
             <h1 class="title">Counter App</h1>
             <h2 class="counter">${this.counter}</h2>
-            <div class="btn-wrapper">
-                <button class="btn1">${this.btnText1}</button>
-                <button class="btn2">${this.btnText2}</button>
+            <div class="btn-group">
+                <button>${this.btnText1}</button>
+                <button>${this.btnText2}</button>
             </div>
         </div>
         `
