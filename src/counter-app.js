@@ -46,6 +46,7 @@ export class CounterApp extends LitElement {
             border-radius: 10%;
             padding: 16px 16px 16px 16px;
             margin: 4px 150px 4px 150px;
+            display: inline;
           }
 
           .btn2 {
@@ -55,6 +56,7 @@ export class CounterApp extends LitElement {
             border-radius: 10%;
             padding: 16px 16px 16px 16px;
             margin: 4px 150px 4px 150px;
+            display: inline;
           }
         `
     }
