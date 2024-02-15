@@ -66,7 +66,7 @@ export class MyCard extends LitElement {
       }
 
     .paragraph1 {
-      font-family: "Lucida Console", "Courier New",   monospace;
+      font-family: "Lucida Console", "Courier New", monospace;
       text-align: center;
     }
 
