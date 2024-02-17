@@ -62,6 +62,10 @@ export class CounterApp extends LitElement {
           :host([counter="21"]) .counter {
             color: green;
           }
+
+          .change-counter {
+            color: red;
+          }
         `
     }
 
@@ -77,16 +81,53 @@ export class CounterApp extends LitElement {
         }
     }
 
+    minmaxchange() {
+      if (this.min === this.counter || this.max === this.counter) {
+        const count = document.querySelector('.counter');
+        count.classList.add('change-counter')
+      }
+    }
+
+    
+    updated(changedProperties) {
+      if (changedProperties.has('counter')) {
+        // do your testing of the value and make it rain by calling makeItRain
+        if (this.counter === 21) {
+          this.makeItRain();
+        }
+      }
+    }
+
+    makeItRain() {
+      // this is called a dynamic import. It means it won't import the code for confetti until this method is called
+      // the .then() syntax after is because dynamic imports return a Promise object. Meaning the then() code
+      // will only run AFTER the code is imported and available to us
+      import("@lrnwebcomponents/multiple-choice/lib/confetti-container.js").then(
+        (module) => {
+          // This is a minor timing 'hack'. We know the code library above will import prior to this running
+          // The "set timeout 0" means "wait 1 microtask and run it on the next cycle.
+          // this "hack" ensures the element has had time to process in the DOM so that when we set popped
+          // it's listening for changes so it can react
+          setTimeout(() => {
+            // forcibly set the poppped attribute on something with id confetti
+            // while I've said in general NOT to do this, the confetti container element will reset this
+            // after the animation runs so it's a simple way to generate the effect over and over again
+            this.shadowRoot.querySelector("#confetti").setAttribute("popped", "");
+          }, 0);
+        }
+      );
+    }
+
     render() {
         return html`
         <div class="counter-wrapper">
             <h1 class="title">Counter App</h1>
-            <h2 class="counter">${this.counter}</h2>
+            <confetti-container id="confetti"><h2 class="counter">${this.counter}</h2></confetti-container>
             <div class="btn-group">
-                <button class="btn1" @click="${this.increase}">${this.btnText1}</button>
-                <button class="btn2" @click="${this.decrease}">${this.btnText2}</button>
+                <button class="btn1" @click="${this.increase}" ?disabled="${this.max === this.counter}">${this.btnText1}</button>
+                <button class="btn2" @click="${this.decrease}" ?disabled="${this.min === this.counter}">${this.btnText2}</button>
             </div>
-        </div>
+        </div> 
         `
     }
 
