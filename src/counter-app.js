@@ -81,10 +81,12 @@ export class CounterApp extends LitElement {
         }
     }
 
-    minmaxchange() {
-      if (this.min === this.counter || this.max === this.counter) {
-        const count = document.querySelector('.counter');
-        count.classList.add('change-counter')
+    checkminmaxchange() {
+      if (this.min == this.counter || this.max == this.counter) {
+        this.minmaxchange = true;
+      }
+      else {
+        this.minmaxchange = false;
       }
     }
 
@@ -119,13 +121,14 @@ export class CounterApp extends LitElement {
     }
 
     render() {
+      this.checkminmaxchange();
         return html`
         <div class="counter-wrapper">
             <h1 class="title">Counter App</h1>
-            <confetti-container id="confetti"><h2 class="counter">${this.counter}</h2></confetti-container>
+            <confetti-container id="confetti"><h2 class="counter ${this.minmaxchange ? css`change-counter` : css}">${this.counter}</h2></confetti-container>
             <div class="btn-group">
-                <button class="btn1" @click="${this.increase}" ?disabled="${this.max === this.counter}">${this.btnText1}</button>
-                <button class="btn2" @click="${this.decrease}" ?disabled="${this.min === this.counter}">${this.btnText2}</button>
+                <button class="btn1" @click="${this.increase}" ?disabled="${this.max == this.counter}">${this.btnText1}</button>
+                <button class="btn2" @click="${this.decrease}" ?disabled="${this.min == this.counter}">${this.btnText2}</button>
             </div>
         </div> 
         `
