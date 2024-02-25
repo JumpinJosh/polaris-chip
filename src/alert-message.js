@@ -31,22 +31,24 @@ export class alertMessage extends LitElement {
     }
 
     openAlert() {
-        const alert = document.getElementsByClassName("closed-alert");
-        if (alert.style.display === "none") {
-            alert.style.display = "block";
+        const alertClosed = document.getElementsByClassName("closed-alert");
+        const alertOpened = document.getElementsByClassName("opened-alert");
+        if (alertClosed.style.visiblity = "hidden") {
+            alertOpened.style.visiblity = "visible"
         }
         else {
-            alert.style.display = "none"
+            alertOpened.style.visiblity = "hidden"
         }
     }
 
     closeAlert() {
-        const alert = document.getElementsByClassName("opened-alert");
-        if (alert.style.display === "none") {
-            alert.style.display = "block";
+        const alertClosed = document.getElementsByClassName("closed-alert");
+        const alertOpened = document.getElementsByClassName("opened-alert");
+        if (alertOpened.style.visiblity = "hidden") {
+            alertClosed.style.visiblity = "visible"
         }
         else {
-            alert.style.display = "none";
+            alertClosed.style.visiblity = "hidden"
         }
     }
 
