@@ -26,18 +26,37 @@ export class alertMessage extends LitElement {
             background-color: yellow;
         }
 
-        :host([alertStatus="notice"]) {
+        .closed-alert {
+            visibility: visible;
+        }
+
+        .opened-alert {
+            visibility: hidden;
+        }
+
+        :host([alertStatus="notice"]) .opened-alert{
             background-color: blue;
         }
 
-        :host([alertStatus="warning"]) {
+        :host([alertStatus="warning"]) .opened-alert {
             background-color: yellow;
         }
 
-        :host([alertStatus="alert"]) {
+        :host([alertStatus="alert"]) .opened-alert{
             background-color: red;
         }
         `
+    }
+
+    toggleAlert() {
+        const alertClosed = document.querySelector(".closed-alert");
+        const alertOpened = document.querySelector(".opened-alert");
+        if (alertClosed.getAttribute("visibility") = "hidden") {
+            alertOpened.setAttribute("visibility", "visibility: visible;");
+        }
+        else {
+            alertOpened.setAttribute("visibility", "visibility: hidden;");
+        }
     }
 
     render() {
@@ -45,14 +64,14 @@ export class alertMessage extends LitElement {
         <div class="alert-wrapper">
             <div class="alert-wrap">
                 <div class="closed-alert">
-                    <button class="open-alert" @click="${this.openAlert}">
+                    <button class="open-alert" @click="${this.toggleAlert}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="82" height="82" viewBox="0 0 82 82" class="alert-icon"><g transform="translate(-350.099 -428.714)"><g transform="translate(350.099 428.714)" fill="none" stroke-width="6"><circle cx="41" cy="41" r="41" stroke="none"></circle><circle cx="41" cy="41" r="38" fill="none"></circle></g><g transform="translate(384.41 448.566)"><rect width="10.381" height="7.786" transform="translate(0.919 34.336)"></rect><path d="M6520.672,2327.554h-5.854l-3.21-23.669V2299.2h11.81v4.681Z" transform="translate(-6511.607 -2299.203)" class="alert-icon-min"></path></g></g></svg>
                         <slot>${this.alertTitle}</slot>
                     </button>
                 </div>
                 <div class="opened-alert">
                     <slot><p>${this.alertDate}</p></slot>
-                    <button class="close-alert" @click="${this.closeAlert}">Close</button>
+                    <button class="close-alert" @click="${this.toggleAlert}">Close</button>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 82 82" class="alert-icon"><g transform="translate(-350.099 -428.714)"><g transform="translate(350.099 428.714)" fill="none" stroke-width="6"><circle cx="41" cy="41" r="41" stroke="none"></circle><circle cx="41" cy="41" r="38" fill="none"></circle></g><g transform="translate(384.41 448.566)"><rect width="10.381" height="7.786" transform="translate(0.919 34.336)"></rect><path d="M6520.672,2327.554h-5.854l-3.21-23.669V2299.2h11.81v4.681Z" transform="translate(-6511.607 -2299.203)"></path></g></g></svg>
                     <div class="message">
                         <slot><p>${this.alertParagraph}</p></slot>
