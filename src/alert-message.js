@@ -8,8 +8,10 @@ export class alertMessage extends LitElement {
     constructor() {
         super();
         this.alertTitle = "Test Campus Alert";
-        this.alertDate = "February 14, 2024 12:00 PM"
+        this.alertDate = "February 14, 2024 12:00 PM";
         this.alertParagraph = "This is a test alert. Please remain calm as nothing serious has happened";
+        this.alertStatus = "notice";
+        this.open = true;
     }
 
     static get styles() {
@@ -24,35 +26,20 @@ export class alertMessage extends LitElement {
             background-color: yellow;
         }
 
-        .opened-alert {
+        :host([alertStatus="notice"]) {
+            background-color: blue;
+        }
+
+        :host([alertStatus="warning"]) {
+            background-color: yellow;
+        }
+
+        :host([alertStatus="alert"]) {
             background-color: red;
         }
         `
     }
 
-    openAlert() {
-        const alertClosed = document.getElementsByClassName("closed-alert");
-        const alertOpened = document.getElementsByClassName("opened-alert");
-        if (alertClosed.style.visiblity = "hidden") {
-            alertOpened.style.visiblity = "visible"
-        }
-        else {
-            alertOpened.style.visiblity = "hidden"
-        }
-    }
-
-    closeAlert() {
-        const alertClosed = document.getElementsByClassName("closed-alert");
-        const alertOpened = document.getElementsByClassName("opened-alert");
-        if (alertOpened.style.visiblity = "hidden") {
-            alertClosed.style.visiblity = "visible"
-        }
-        else {
-            alertClosed.style.visiblity = "hidden"
-        }
-    }
-
- 
     render() {
         return html`
         <div class="alert-wrapper">
@@ -78,7 +65,11 @@ export class alertMessage extends LitElement {
 
     static get properties() {
         return {
-
+            alertTitle: { type: String, attribute: "alert-title" },
+            alertParagraph: { type: String, attribute: "alert-paragraph" },
+            alertDate: { type: String, attribute: "alert-date" },
+            alertStatus: { type: String, attribute: "alert-status" },
+            open: { type: Boolean },
         }
     }
 }
