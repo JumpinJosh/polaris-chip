@@ -12,9 +12,7 @@ export class alertMessage extends LitElement {
         this.alertParagraph = "This is a test alert. Please remain calm as nothing serious has happened";
         this.alertStatus = "notice";
         this.open = true;
-
-        const status = localStorage.getItem('openStatus');
-        if (status === 'Closed') {
+        if (localStorage.getItem('openStatus') == "false") {
             this.open = false;
         }
     }
@@ -33,12 +31,12 @@ export class alertMessage extends LitElement {
         }
 
         .closed-alert {
-            visibility: visible;
+            display: block;
             background-color: lightblue;
         }
 
         .opened-alert {
-            visibility: hidden;
+            display: none;
             background-color: blue;
             color: white;
         }
@@ -81,17 +79,36 @@ export class alertMessage extends LitElement {
             background-color: red;
             color: black;
         }
+
+        .hide-alert {
+            display: none;
+        }
+
+        .show-alert {
+            display: block
+        }
         `
     }
 
     toggleAlert() {
         this.open = !this.open
+        localStorage.setItem('openStatus', this.open);
 
-        if (!this.open) {
-            localStorage.setItem('openStatus', 'Closed');
+        if (this.open == true) {
+            const openedstate = document.querySelector('alert-message');
+            openedstate.shadowRoot.querySelector('.opened-alert').classList.remove('hide-alert');
+            openedstate.shadowRoot.querySelector('.opened-alert').classList.add('show-alert');
+
+            openedstate.shadowRoot.querySelector('.closed-alert').classList.remove('show-alert');
+            openedstate.shadowRoot.querySelector('.closed-alert').classList.add('hide-alert');
         }
         else {
-            localStorage.removeItem('openStatus')
+            const closedstate = document.querySelector('alert-message');
+            closedstate.shadowRoot.querySelector('.opened-alert').classList.remove('show-alert');
+            closedstate.shadowRoot.querySelector('.opened-alert').classList.add('hide-alert');
+
+            closedstate.shadowRoot.querySelector('.closed-alert').classList.remove('hide-alert');
+            closedstate.shadowRoot.querySelector('.closed-alert').classList.add('show-alert');
         }
     }
 
@@ -99,15 +116,15 @@ export class alertMessage extends LitElement {
         return html`
         <div class="alert-wrapper">
             <div class="alert-wrap">
-                <div class="closed-alert">
-                    <button class="open-alert" @click="${this.toggleAlert}">
+                <div class="closed-alert hide-alert">
+                    <button class="open-alert" @click=${this.toggleAlert}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="82" height="82" viewBox="0 0 82 82" class="alert-icon"><g transform="translate(-350.099 -428.714)"><g transform="translate(350.099 428.714)" fill="none" stroke-width="6"><circle cx="41" cy="41" r="41" stroke="none"></circle><circle cx="41" cy="41" r="38" fill="none"></circle></g><g transform="translate(384.41 448.566)"><rect width="10.381" height="7.786" transform="translate(0.919 34.336)"></rect><path d="M6520.672,2327.554h-5.854l-3.21-23.669V2299.2h11.81v4.681Z" transform="translate(-6511.607 -2299.203)" class="alert-icon-min"></path></g></g></svg>
                         <slot>${this.alertTitle}</slot>
                     </button>
                 </div>
-                <div class="opened-alert">
+                <div class="opened-alert show-alert">
                     <slot><p>${this.alertDate}</p></slot>
-                    <button class="close-alert" @click="${this.toggleAlert}">Close</button>
+                    <button class="close-alert" @click=${this.toggleAlert}>Close</button>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 82 82" class="alert-icon"><g transform="translate(-350.099 -428.714)"><g transform="translate(350.099 428.714)" fill="none" stroke-width="6"><circle cx="41" cy="41" r="41" stroke="none"></circle><circle cx="41" cy="41" r="38" fill="none"></circle></g><g transform="translate(384.41 448.566)"><rect width="10.381" height="7.786" transform="translate(0.919 34.336)"></rect><path d="M6520.672,2327.554h-5.854l-3.21-23.669V2299.2h11.81v4.681Z" transform="translate(-6511.607 -2299.203)"></path></g></g></svg>
                     <div class="message">
                         <slot><p>${this.alertParagraph}</p></slot>
