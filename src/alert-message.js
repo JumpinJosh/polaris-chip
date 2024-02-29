@@ -12,6 +12,11 @@ export class alertMessage extends LitElement {
         this.alertParagraph = "This is a test alert. Please remain calm as nothing serious has happened";
         this.alertStatus = "notice";
         this.open = true;
+
+        const status = localStorage.getItem('openStatus');
+        if (status === 'Closed') {
+            this.open = false;
+        }
     }
 
     static get styles() {
@@ -23,39 +28,70 @@ export class alertMessage extends LitElement {
         }
 
         .open-alert {
-            background-color: yellow;
+            border: none;
+            background-color: lightblue;
         }
 
         .closed-alert {
             visibility: visible;
+            background-color: lightblue;
         }
 
         .opened-alert {
             visibility: hidden;
+            background-color: blue;
+            color: white;
+        }
+
+        :host([alertStatus="notice"]) .open-alert {
+            background-color: lightblue;
+        }
+
+        :host([alertStatus="notice"]) .closed-alert {
+            background-color: lightblue;
         }
 
         :host([alertStatus="notice"]) .opened-alert{
             background-color: blue;
+            color: white;
+        }
+
+        :host([alertStatus="warning"]) .open-alert {
+            background-color: lightyellow;
+        }
+
+        :host([alertStatus="warning"]) .closed-alert {
+            background-color: lightyellow;
         }
 
         :host([alertStatus="warning"]) .opened-alert {
             background-color: yellow;
+            color: black;
+        }
+
+        :host([alertStatus="alert"]) .open-alert {
+            background-color: lightpink;
+        }
+
+        :host([alertStatus="alert"]) .closed-alert {
+            background-color: lightpink;
         }
 
         :host([alertStatus="alert"]) .opened-alert{
             background-color: red;
+            color: black;
         }
         `
     }
 
     toggleAlert() {
-        const alertClosed = document.querySelector(".closed-alert");
-        const alertOpened = document.querySelector(".opened-alert");
-        if (alertClosed.getAttribute("visibility") = "hidden") {
-            alertOpened.setAttribute("visibility", "visibility: visible;");
+        this.open = !this.open
+
+        if (!this.open) {
+            localStorage.setItem('openStatus', 'Closed');
         }
         else {
-            alertOpened.setAttribute("visibility", "visibility: hidden;");
+            localStorage.removeItem('openStatus')
         }
     }
 
@@ -88,7 +124,7 @@ export class alertMessage extends LitElement {
             alertParagraph: { type: String, attribute: "alert-paragraph" },
             alertDate: { type: String, attribute: "alert-date" },
             alertStatus: { type: String, attribute: "alert-status" },
-            open: { type: Boolean },
+            open: { type: Boolean, reflect: true },
         }
     }
 }
