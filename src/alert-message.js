@@ -228,6 +228,7 @@ export class alertMessage extends LitElement {
             alertDate: { type: String, attribute: "alert-date" },
             alertStatus: { type: String, attribute: "alert-status" },
             open: { type: Boolean, reflect: true },
+            sticky: { type: Boolean, reflect: true},
         }
     }
 }
