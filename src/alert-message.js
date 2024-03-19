@@ -179,20 +179,24 @@ export class alertMessage extends LitElement {
         localStorage.setItem('openStatus', this.open);
 
         if (this.open == true) {
-            const openedstate = document.querySelector('alert-message');
-            openedstate.shadowRoot.querySelector('.opened-alert').classList.remove('hide-alert');
-            openedstate.shadowRoot.querySelector('.opened-alert').classList.add('show-alert');
+            const openedstate = document.querySelectorAll('alert-message');
+            openedstate.forEach(alert => {
+                alert.shadowRoot.querySelector('.opened-alert').classList.remove('hide-alert');
+                alert.shadowRoot.querySelector('.opened-alert').classList.add('show-alert');
 
-            openedstate.shadowRoot.querySelector('.closed-alert').classList.remove('show-alert');
-            openedstate.shadowRoot.querySelector('.closed-alert').classList.add('hide-alert');
+                alert.shadowRoot.querySelector('.closed-alert').classList.remove('show-alert');
+                alert.shadowRoot.querySelector('.closed-alert').classList.add('hide-alert');
+            });
         }
         else {
             const closedstate = document.querySelector('alert-message');
-            closedstate.shadowRoot.querySelector('.opened-alert').classList.remove('show-alert');
-            closedstate.shadowRoot.querySelector('.opened-alert').classList.add('hide-alert');
+            closedstate.forEach(alertClosed => {
+                alertClosed.shadowRoot.querySelector('.opened-alert').classList.remove('show-alert');
+                alertClosed.shadowRoot.querySelector('.opened-alert').classList.add('hide-alert');
 
-            closedstate.shadowRoot.querySelector('.closed-alert').classList.remove('hide-alert');
-            closedstate.shadowRoot.querySelector('.closed-alert').classList.add('show-alert');
+                alertClosed.shadowRoot.querySelector('.closed-alert').classList.remove('hide-alert');
+                alertClosed.shadowRoot.querySelector('.closed-alert').classList.add('show-alert');
+            });
         }
     }
 
