@@ -10,6 +10,7 @@ export class HaxcmsPartyUI extends DDD {
     constructor() {
         super();
         this.characters = ["jas9049"];
+        this.userName = "Name"
     }
 
     static get styles() {
@@ -24,7 +25,7 @@ export class HaxcmsPartyUI extends DDD {
                 border-radius: var(--ddd-radius-md);
                 background-color: var(--ddd-theme-default-nittanyNavy);
                 width: auto;
-                height: var(--haxcms-party-ui-height, 300px);
+                height: var(--haxcms-party-ui-height, 325px);
             }
 
             .title {
@@ -48,9 +49,16 @@ export class HaxcmsPartyUI extends DDD {
 
             .character-wrapper {
                 display: flex;
+                flex-direction: row;
+            }
+
+            .user {
+                display: flex;
+                flex-direction: column;
                 margin: 0;
+                text-align: center;
                 position: absolute;
-                top: 39%;
+                top: 41%;
                 left: 50%;
                 -ms-transform: translate(-50%, -50%);
                 transform: translate(-50%, -50%);
@@ -58,8 +66,9 @@ export class HaxcmsPartyUI extends DDD {
             }
 
             .user-name {
-                padding: var(--ddd-spacing-m0);
                 color: var(--ddd-theme-default-white);
+                font-size: 12pt;
+                border-bottom: 2px solid red;
             }
 
             .delete-button {
@@ -126,6 +135,10 @@ export class HaxcmsPartyUI extends DDD {
         console.log(this.characters);
     }
 
+    updateName(e) {
+        this.userName = e.target.value;
+    }
+
     deleteItem(e) {
         this.characters.pop();
         this.requestUpdate();
@@ -136,15 +149,17 @@ export class HaxcmsPartyUI extends DDD {
         <div class="ui-wrapper">
             <p class="title">Add Party Members</p>
             <div class="input-block">
-                <input type="text" class="username-textbox" placeholder="Enter username">
+                <input type="text" class="username-textbox" placeholder="Enter username" @input=${this.updateName}>
                 <button class="add-button" @click="${this.addItem}">Add</button>
                 <button class="delete-button" @click="${this.deleteItem}">Delete</button>
             </div>
             <div class="character-wrapper">
-                ${this.characters.map((character) => html`
-                    <rpg-character seed="${character}"></rpg-character>
-                    <p class="user-name">${character.characterName}</p>
-                `)}
+                <div class="user">
+                    ${this.characters.map((character) => html`
+                        <rpg-character seed="${character}"></rpg-character>
+                        <p class="user-name">${character}</p>
+                    `)}
+                </div>
             </div>
             <div class="save-cancel-wrapper">
                 <button class="save-button">Save</button>
@@ -157,6 +172,7 @@ export class HaxcmsPartyUI extends DDD {
     static get properties() {
         return {
             characters: { type: Array },
+            userName: { type: String },
         }
     }
 }
