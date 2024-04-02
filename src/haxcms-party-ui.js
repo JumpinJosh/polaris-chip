@@ -49,12 +49,6 @@ export class HaxcmsPartyUI extends DDD {
 
             .character-wrapper {
                 display: flex;
-                flex-direction: row;
-            }
-
-            .user {
-                display: flex;
-                flex-direction: column;
                 margin: 0;
                 text-align: center;
                 position: absolute;
@@ -65,10 +59,14 @@ export class HaxcmsPartyUI extends DDD {
                 align-content: center;
             }
 
+            .user {
+                flex-direction: column;
+                padding: var(--ddd-spacing-4) var(--ddd-spacing-4) var(--ddd-spacing-4) var(--ddd-spacing-4);
+            }
+
             .user-name {
                 color: var(--ddd-theme-default-white);
                 font-size: 12pt;
-                border-bottom: 2px solid red;
             }
 
             .delete-button {
@@ -144,6 +142,17 @@ export class HaxcmsPartyUI extends DDD {
         this.requestUpdate();
     }
 
+    saveItem() {
+        const listOfNames = this.characters.join(', ');
+        alert(`Party saved. Users: ${listOfNames}`);
+        this.makeItRain();
+    }
+
+    cancelItem() {
+        this.characters = [];
+        this.characters.push("jas9049");    
+    }
+
     render() {
         return html`
         <div class="ui-wrapper">
@@ -154,16 +163,14 @@ export class HaxcmsPartyUI extends DDD {
                 <button class="delete-button" @click="${this.deleteItem}">Delete</button>
             </div>
             <div class="character-wrapper">
-                <div class="user">
-                    ${this.characters.map((character) => html`
-                        <rpg-character seed="${character}"></rpg-character>
-                        <p class="user-name">${character}</p>
-                    `)}
-                </div>
+                ${this.characters.map((character) => html`
+                    <rpg-character class="user" seed="${character}"></rpg-character>
+                    <p class="user-name">${character}</p>
+                `)}
             </div>
             <div class="save-cancel-wrapper">
-                <button class="save-button">Save</button>
-                <button class="cancel-button">Cancel</button>
+                <confetti-container id="confetti"><button class="save-button" @click="${this.saveItem}">Save</button></confetti-container>
+                <button class="cancel-button" @click="${this.cancelItem}">Cancel</button>
             </div>
         </div>
         `
@@ -174,6 +181,16 @@ export class HaxcmsPartyUI extends DDD {
             characters: { type: Array },
             userName: { type: String },
         }
+    }
+
+    makeItRain() {
+        import("@lrnwebcomponents/multiple-choice/lib/confetti-container.js").then(
+          (module) => {
+            setTimeout(() => {
+              this.shadowRoot.querySelector("#confetti").setAttribute("popped", "");
+            }, 0);
+          }
+        );
     }
 }
 globalThis.customElements.define(HaxcmsPartyUI.tag, HaxcmsPartyUI);
