@@ -37,8 +37,8 @@ export class HaxcmsPartyUI extends DDD {
                 justify-content: center;
                 align-items: center;
                 cursor: pointer;
-                height: fit-content;
-                width: fit-content;
+                height: 50px;
+                width: 50px;
                 color: var(--ddd-theme-default-nittanyNavy);
                 background-color: var(--ddd-theme-default-white);
                 font-weight: var(--ddd-font-primary-medium);
@@ -52,8 +52,8 @@ export class HaxcmsPartyUI extends DDD {
                 margin: 0;
                 text-align: center;
                 position: absolute;
-                top: 41%;
-                left: 50%;
+                top: 275px;
+                left: 700px;
                 -ms-transform: translate(-50%, -50%);
                 transform: translate(-50%, -50%);
                 align-content: center;
@@ -73,8 +73,8 @@ export class HaxcmsPartyUI extends DDD {
                 justify-content: center;
                 align-items: center;
                 cursor: pointer;
-                height: fit-content;
-                width: fit-content;
+                height: 50px;
+                width: 75px;
                 color: var(--ddd-theme-default-nittanyNavy);
                 background-color: var(--ddd-theme-default-white);
                 font-weight: var(--ddd-font-primary-medium);
@@ -87,8 +87,8 @@ export class HaxcmsPartyUI extends DDD {
                 justify-content: center;
                 align-items: center;
                 cursor: pointer;
-                height: fit-content;
-                width: fit-content;
+                height: 50px;
+                width: 50px;
                 color: var(--ddd-theme-default-nittanyNavy);
                 background-color: var(--ddd-theme-default-white);
             }
@@ -96,9 +96,10 @@ export class HaxcmsPartyUI extends DDD {
             .cancel-button {
                 justify-content: center;
                 align-items: center;
+                text-align: center;
                 cursor: pointer;
-                height: fit-content;
-                width: fit-content;
+                height: 50px;
+                width: 75px;
                 color: var(--ddd-theme-default-nittanyNavy);
                 background-color: var(--ddd-theme-default-white);
             }
@@ -106,17 +107,18 @@ export class HaxcmsPartyUI extends DDD {
             .input-block {
                 margin: 0;
                 position: absolute;
-                top: 25%;
-                left: 50%;
+                top: 175px;
+                left: 725px;
                 -ms-transform: translate(-50%, -50%);
                 transform: translate(-50%, -50%);
             }
 
             .save-cancel-wrapper {
                 margin: 0;
+                padding: var(--ddd-spacing-4) var(--ddd-spacing-4) var(--ddd-spacing-4) var(--ddd-spacing-4);
                 position: absolute;
-                top: 55%;
-                left: 50%;
+                top: 400px;
+                left: 725px;
                 -ms-transform: translate(-50%, -50%);
                 transform: translate(-50%, -50%);
                 align-content: center;
@@ -127,10 +129,15 @@ export class HaxcmsPartyUI extends DDD {
 
     addItem(e) {
         const characterName = this.shadowRoot.querySelector(".username-textbox").value;
-    
-        console.log(characterName);
-        this.characters = [...this.characters, characterName];
-        console.log(this.characters);
+
+        if (/^[a-zA-Z0-9]{1,10}$/.test(characterName)) {
+            console.log(characterName);
+            this.characters = [...this.characters, characterName];
+            console.log(this.characters);
+        }
+        else {
+            alert(`Name must not include special character`);
+        }
     }
 
     updateName(e) {
