@@ -23,12 +23,15 @@ export class HaxcmsPartyUI extends DDD {
 
             .ui-wrapper {
                 border-radius: var(--ddd-radius-md);
-                background-color: var(--ddd-theme-default-nittanyNavy);
+                //background-color: var(--ddd-theme-default-forestGreen);
+                background-image: linear-gradient(var(--ddd-theme-default-forestGreen), var(--ddd-theme-default-skyBlue));
                 width: auto;
                 height: var(--haxcms-party-ui-height, 325px);
             }
 
             .title {
+                font-family: fantasy;
+                font-size: 16pt;
                 color: var(--ddd-theme-default-white);
                 text-align: center;
             }
@@ -40,7 +43,8 @@ export class HaxcmsPartyUI extends DDD {
                 height: 50px;
                 width: 50px;
                 color: var(--ddd-theme-default-nittanyNavy);
-                background-color: var(--ddd-theme-default-white);
+                background-color: var(--ddd-theme-default-athertonViolet);
+                font-family: 'Times New Roman', Times, serif;
                 font-weight: var(--ddd-font-primary-medium);
                 text-decoration: none;
                 border-radius: var(--ddd-radius-xs);
@@ -52,10 +56,8 @@ export class HaxcmsPartyUI extends DDD {
                 margin: 0;
                 text-align: center;
                 position: absolute;
-                top: 275px;
-                left: 700px;
-                -ms-transform: translate(-50%, -50%);
-                transform: translate(-50%, -50%);
+                top: 200px;
+                left: 100px;
                 align-content: center;
             }
 
@@ -66,6 +68,7 @@ export class HaxcmsPartyUI extends DDD {
 
             .user-name {
                 color: var(--ddd-theme-default-white);
+                font-family: 'Courier New', Courier, monospace;
                 font-size: 12pt;
             }
 
@@ -76,7 +79,8 @@ export class HaxcmsPartyUI extends DDD {
                 height: 50px;
                 width: 75px;
                 color: var(--ddd-theme-default-nittanyNavy);
-                background-color: var(--ddd-theme-default-white);
+                background-color: var(--ddd-theme-default-athertonViolet);
+                font-family: 'Times New Roman', Times, serif;
                 font-weight: var(--ddd-font-primary-medium);
                 text-decoration: none;
                 border-radius: var(--ddd-radius-xs);
@@ -90,7 +94,8 @@ export class HaxcmsPartyUI extends DDD {
                 height: 50px;
                 width: 50px;
                 color: var(--ddd-theme-default-nittanyNavy);
-                background-color: var(--ddd-theme-default-white);
+                background-color: var(--ddd-theme-default-athertonViolet);
+                font-family: 'Times New Roman', Times, serif;
             }
 
             .cancel-button {
@@ -101,26 +106,24 @@ export class HaxcmsPartyUI extends DDD {
                 height: 50px;
                 width: 75px;
                 color: var(--ddd-theme-default-nittanyNavy);
-                background-color: var(--ddd-theme-default-white);
+                background-color: var(--ddd-theme-default-athertonViolet);
+                font-family: 'Times New Roman', Times, serif;
             }
 
             .input-block {
                 margin: 0;
                 position: absolute;
-                top: 175px;
-                left: 725px;
-                -ms-transform: translate(-50%, -50%);
-                transform: translate(-50%, -50%);
+                top: 160px;
+                left: 600px;
+                align-content: center;
             }
 
             .save-cancel-wrapper {
                 margin: 0;
                 padding: var(--ddd-spacing-4) var(--ddd-spacing-4) var(--ddd-spacing-4) var(--ddd-spacing-4);
                 position: absolute;
-                top: 400px;
-                left: 725px;
-                -ms-transform: translate(-50%, -50%);
-                transform: translate(-50%, -50%);
+                top: 375px;
+                left: 650px;
                 align-content: center;
             }
             `
@@ -151,13 +154,13 @@ export class HaxcmsPartyUI extends DDD {
 
     saveItem() {
         const listOfNames = this.characters.join(', ');
-        alert(`Party saved. Users: ${listOfNames}`);
         this.makeItRain();
+        alert(`Party saved. Users: ${listOfNames}`);
     }
 
     cancelItem() {
         this.characters = [];
-        this.characters.push("jas9049");    
+        this.characters.push("jas9049");
     }
 
     render() {
@@ -192,11 +195,11 @@ export class HaxcmsPartyUI extends DDD {
 
     makeItRain() {
         import("@lrnwebcomponents/multiple-choice/lib/confetti-container.js").then(
-          (module) => {
-            setTimeout(() => {
-              this.shadowRoot.querySelector("#confetti").setAttribute("popped", "");
-            }, 0);
-          }
+            (module) => {
+                setTimeout(() => {
+                    this.shadowRoot.querySelector("#confetti").setAttribute("popped", "");
+                }, 0);
+            }
         );
     }
 }
